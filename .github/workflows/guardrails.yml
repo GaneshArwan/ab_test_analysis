@@ -1,10 +1,20 @@
 name: Guardrails CI
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
   pull_request:
     branches: [main]
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "app.py"
+      - "requirements*.txt"
+      - "pyproject.toml"
+      - ".github/workflows/guardrails.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -40,4 +50,4 @@ jobs:
         run: pip-audit -r requirements.txt
 
       - name: Run Pytest with coverage
-        run: pytest -v --cov=src --cov-report=term-missing --cov-fail-under=80
+        run: python -m pytest -v --cov=src --cov-report=term-missing --cov-fail-under=80
