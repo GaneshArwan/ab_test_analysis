@@ -2,6 +2,7 @@
 
 **Dual Frequentist and Bayesian A/B testing pipeline for conversion rate, revenue per user, funnel drop-off, and subgroup lift—with automated Sample Ratio Mismatch (SRM) gating, Pydantic v2 data contracts, and a bilingual (`en`/`id`) Streamlit dashboard.**
 
+[![Live Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ab-test-analysis-engine.streamlit.app/)
 [![Open 01_eda in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GaneshArwan/ab_test_analysis/blob/main/notebooks/01_eda.ipynb)
 [![Open 02_ab_analysis in Colab](https://colab.research.google.com/github/GaneshArwan/ab_test_analysis/blob/main/notebooks/02_ab_analysis.ipynb)
 [![Methodology Write-up](https://img.shields.io/badge/Docs-Methodology%20Write--up-1E3A8A)](docs/methodology_blog.md)
@@ -48,7 +49,10 @@ This repository packages a reproducible experimentation workflow that:
 
 ## Quick Start
 
-### 1. Run Locally
+### 1. Live Interactive App
+Open the deployed dashboard directly: [ab-test-analysis-engine.streamlit.app](https://ab-test-analysis-engine.streamlit.app/)
+
+### 2. Run Locally
 ```bash
 python -m venv .venv
 # Windows: .venv\Scripts\activate | macOS/Linux: source .venv/bin/activate
@@ -61,10 +65,10 @@ python -m src.run_analysis --locale en --seed 42
 streamlit run app.py
 ```
 
-### 2. Run in Google Colab
+### 3. Run in Google Colab
 Click either badge at the top to open [01_eda.ipynb](notebooks/01_eda.ipynb) or [02_ab_analysis.ipynb](notebooks/02_ab_analysis.ipynb) directly in Google Colab; Cell 1 auto-clones the repository and installs runtime dependencies when `google.colab` is detected.
 
-### 3. Run Verification Suite & Docker
+### 4. Run Verification Suite & Docker
 ```bash
 pytest -v --cov=src --cov-report=term-missing
 ruff check src app.py tests
